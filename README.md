@@ -1,20 +1,18 @@
 # Linux-Server-Configuration
-Project Overview
-A baseline installation of a Linux server and prepare it to host web applications. Learning how to secure your server from a number of attack vectors, install and configure a database server, and deploy one of your existing web applications onto it.
-
+<h3>Project Overview</h3>
+<p>A baseline installation of a Linux server and prepare it to host web applications. Learning how to secure your server from a number of attack vectors, install and configure a database server, and deploy one of your existing web applications onto it.</p>
+<div>
 Public IP address: 13.232.26.143</br>
 SSH port: 2200</br>
 URL: http://13.232.26.143/ </br>
-
-Steps to Configure Linux server
-1. Start a new Ubuntu Linux server instance on <a target="_blank" href="https://lightsail.aws.amazon.com">Amazon Lightsail</a>.
-You can refer to the <a href="https://aws.amazon.com/documentation/lightsail/" rel="nofollow">documentation</a> which will help you to get started.
-
-2. Follow the instructions provided to SSH into your server.
-There is a button on lightsail dashboard to directly SSH into your server. You can also SSH into your machine using the private key.
-
-Download the private key provided in account section of AWS Lightsail.
-Use this command: $ ssh -i <privateKeyOfInstance.rsa> <Username>@<Public IP address>
+</div>
+<h5>1. Steps to Configure Linux server</h5>
+<p>Start a new Ubuntu Linux server instance on <a target="_blank" href="https://lightsail.aws.amazon.com">Amazon Lightsail</a>.
+You can refer to the <a href="https://aws.amazon.com/documentation/lightsail/" rel="nofollow">documentation</a> which will help you to get started.</p>
+<h6>Follow the instructions provided to SSH into your server.</h6>
+<p>There is a button on lightsail dashboard to directly SSH into your server. You can also SSH into your machine using the private key.</p>
+<p>Download the private key provided in account section of AWS Lightsail.</p>
+<p>Use this command: $ ssh -i <privateKeyOfInstance.rsa> <Username>@<Public IP address></p>
 
 
 <h5>3. Update all currently installed packages</h5>
