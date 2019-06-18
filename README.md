@@ -15,22 +15,19 @@ There is a button on lightsail dashboard to directly SSH into your server. You c
 
 Download the private key provided in account section of AWS Lightsail.
 Use this command: $ ssh -i <privateKeyOfInstance.rsa> <Username>@<Public IP address>
-$ ssh -i LightsailDefaultKey-ap-south-1.pem ubuntu@13.232.26.143
-The authenticity of host '13.232.26.143 (13.232.26.143)' can't be established.
-ECDSA key fingerprint is SHA256:n/8LYxQcacoGEAI+Hajr5mFzVRZyomLE8YkzIA2Jr90.
-Are you sure you want to continue connecting (yes/no)? yes
-
-Update all currently installed packages
-sudo apt-get update
-sudo apt-get upgrade
 
 
-Change the SSH port from 22 to 2200. Make sure to configure the Lightsail firewall to allow it.
-sudo vim /etc/ssh/sshd_config
-change the Port 22 to 2200
-save and exit
+<h5>3. Update all currently installed packages</h5>
+</p>sudo apt-get update</p>
+</p>sudo apt-get upgrade</p>
+
+
+<h5>4. Change the SSH port from 22 to 2200. Make sure to configure the Lightsail firewall to allow it.</h5>
+<p>sudo vim /etc/ssh/sshd_config</p>
+<p>change the Port 22 to 2200</p>
+save and exit</br>
 restart ssh service
-sudo service ssh restart
+<p>sudo service ssh restart</p>
 
 
 Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
