@@ -82,28 +82,27 @@ User grader may run the following commands on
 <p>ssh -i udacity_key grader@13.232.26.143 -p 2200</p>
 
 
+<h4>8. Configure the local timezone to UTC.</h4>
+<p>sudo timedatectl set-timezone UTC</p>
 
-Configure the local timezone to UTC.
-sudo timedatectl set-timezone UTC
+<h4>9. While logged in as grader, Install and configure Apache to serve a Python mod_wsgi application.</h4>
+<p>sudo apt-get install apache2 </p>
+<p>sudo apt-get install libapache2-mod-wsgi </p>
 
-While logged in as grader, Install and configure Apache to serve a Python mod_wsgi application.
-sudo apt-get install apache2 
-sudo apt-get install libapache2-mod-wsgi
+<h6>Enable mod_wsgi using: </h6>
+<p>sudo a2enmod wsgi</p>
 
-Enable mod_wsgi using: 
-sudo a2enmod wsgi
+<h4>10. Installing Postgresql python dependencies</h4>
+<p>sudo apt-get install libpq-dev</p> 
+<p>sudo apt-get install python-dev</p>
 
-Installing Postgresql python dependencies
-sudo apt-get install libpq-dev 
-sudo apt-get install python-dev
+<h6>Install PostgreSQL:<h6> 
+<p>sudo apt-get install postgresql</p>
+<p>sudo apt-get install postgresql-contrib</p>
 
-Install PostgreSQL: 
-sudo apt-get install postgresql
-sudo apt-get install postgresql-contrib
-
-PostgreSQL should not allow remote connections. In the /etc/postgresql/9.5/main/pg_hba.conf file, you should see:
-sudo cat /etc/postgresql/9.5/main/pg_hba.conf
-local   all             postgres                                peer
+<h5>PostgreSQL should not allow remote connections. In the /etc/postgresql/9.5/main/pg_hba.conf file, you should see:</h5>
+<p>sudo cat /etc/postgresql/9.5/main/pg_hba.conf</p>
+<p>local   all             postgres                                peer
 
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
@@ -117,36 +116,35 @@ host    all             all             ::1/128                 md5
 # replication privilege.
 #local   replication     postgres                                peer
 #host    replication     postgres        127.0.0.1/32            md5
-#host    replication     postgres        ::1/128                 md5
+#host    replication     postgres        ::1/128                 md5</p>
 
 
-Create a new database user named catalog that has limited permissions to your catalog application database.
-sudo su - postgres
-psql
-Create a new database named catalog:  CREATE DATABASE catalog;
-Create a new user named catalog:  CREATE USER catalog;
-Set a password for catalog user:  ALTER ROLE catalog with password 'password';
-Grant permission to catalog user:  GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
-Exit from psql:  \q;
-Return to grader using: $ exit
+<h4>11. Create a new database user named catalog that has limited permissions to your catalog application database.</h4>
+<p>sudo su - postgres</p>
+<p>psql</p>
+<h6>Create a new database named catalog:  CREATE DATABASE catalog;</h6>
+<h6>Create a new user named catalog:  CREATE USER catalog;</h6>
+<h6>Set a password for catalog user:  ALTER ROLE catalog with password 'password';</h6>
+<h6>Grant permission to catalog user:  GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;</h6>
+<h6>Exit from psql:  \q;</h6>
+<h6>Return to grader using: $ exit</h6>
 
 
-Install python-pip, Flask and other dependencies
-sudo apt-get install python3-pip
-pip install httplib2
-pip install requests
-pip install oauth2client
-sudo -H pip install sqlalchemy
-sudo -H pip install flask
-sudo apt-get install libpq-dev
-pip install psycopg2
+<h4>12. Install python-pip, Flask and other dependencies<h4>
+<p>sudo apt-get install python-pip</p>
+<p>pip install httplib2</p>
+<p>pip install requests</p>
+<p>pip install oauth2client</p>
+<p>sudo -H pip install sqlalchemy</p>
+<p>sudo -H pip install flask</p>
+<p>sudo apt-get install libpq-dev</p>
+<p>pip install psycopg2</p>
 
 
+<h4>13. Install git</h4>
+<p>sudo apt-get install git</p>
 
-Install git
-sudo apt-get install git
-
-Clone and setup your Item Catalog project from the Github repository you created earlier in this Nanodegree program.
+<h5>Clone and setup your Item Catalog project from the Github repository you created earlier in this Nanodegree program.
 Make a udacity named directory in /var/www/ and udacity in udacity
 sudo mkdir /var/www/udacity
 Make grader as ownner of that directory
