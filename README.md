@@ -12,7 +12,7 @@ You can refer to the <a href="https://aws.amazon.com/documentation/lightsail/" r
 <h5>2. Follow the instructions provided to SSH into your server.</h5>
 <p>There is a button on lightsail dashboard to directly SSH into your server. You can also SSH into your machine using the private key.</p>
 <h6>Download the private key provided in account section of AWS Lightsail.</h6>
-<p>Use this command: $ ssh -i <privateKeyOfInstance.rsa> <Username>@<Public IP address></p>
+<p>Use this command: $ ssh -i LightsailDefaultKey-ap-south-1.pem grader@13.232.26.143</p>
 
 
 <h5>3. Update all currently installed packages</h5>
@@ -23,24 +23,25 @@ You can refer to the <a href="https://aws.amazon.com/documentation/lightsail/" r
 <h5>4. Change the SSH port from 22 to 2200. Make sure to configure the Lightsail firewall to allow it.</h5>
 <p>sudo vim /etc/ssh/sshd_config</p>
 <p>change the Port 22 to 2200</p>
-save and exit</br>
-restart ssh service
+<h8>save and exit</h8>
+<h8>restart ssh service</h8>
 <p>sudo service ssh restart</p>
 
 
 <h5>5. Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).</h5>
-<div>
-sudo ufw status                  
-sudo ufw default deny incoming   
-sudo ufw default allow outgoing  
-sudo ufw allow 2200/tcp          
-sudo ufw allow www               
-sudo ufw allow 123/udp           
-sudo ufw deny 22  
-sudo ufw enable
-</div>	
+
+<p>sudo ufw status</p>                  
+<p>sudo ufw default deny incoming</p>   
+<p>sudo ufw default allow outgoing</p>  
+<p>sudo ufw allow 2200/tcp</p>          
+<p>sudo ufw allow www</p>               
+<p>sudo ufw allow 123/udp</p>           
+<p>sudo ufw deny 22</p>  
+<p>sudo ufw enable</p>
 <p>Command may disrupt existing ssh connections. Proceed with operation (y|n)? y</p>
 <p>Firewall is active and enabled on system startup</p>
+
+<h6>Click on the Manage option of the Amazon Lightsail Instance, then the Networking tab, and then change the firewall configuration to match the internal firewall settings above. </h6>
 
 <h5>6. Create a new user account named grader.</h5>
 <p>sudo adduser grader</p>
@@ -48,11 +49,11 @@ sudo ufw enable
 <h6>Edit and add following line to this file</h6>
 <p>grader ALL=(ALL) NOPASSWD:ALL</p>
 
-<div>Verify that grader has sudo permissions. 
-su - grader 
-enter the password 
-sudo -l 
-enter the password again. The output should be like this:
+<p>Verify that grader has sudo permissions.</br>
+<p>su - grader </p>
+<h6>enter the password</h6> 
+<p>sudo -l </p>
+<h6>enter the password again. The output should be like this:</6>
 Matching Defaults entries for grader on
     ip-172-26-5-148.ap-south-1.compute.internal:
     env_reset, mail_badpass,
@@ -61,7 +62,7 @@ Matching Defaults entries for grader on
 User grader may run the following commands on
         ip-172-26-5-148.ap-south-1.compute.internal:
     (ALL) NOPASSWD: ALL
-    </div>
+    </p>
 
 	
 <h5>7. Create an SSH key pair for grader using the ssh-keygen tool.</h5>
@@ -81,7 +82,7 @@ User grader may run the following commands on
 <p>ssh -i udacity_key grader@13.232.26.143 -p 2200</p>
 
 
-Prepare to deploy your project.
+
 Configure the local timezone to UTC.
 sudo timedatectl set-timezone UTC
 
