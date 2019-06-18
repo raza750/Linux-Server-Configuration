@@ -171,14 +171,14 @@ User grader may run the following commands on
 
 <h6>Add the following lines of code to the .wsgi file</h6>
 
-<p>#!/usr/bin/python</p>
-<p>import sys</p>
-<p>import logging</p>
-<p>logging.basicConfig(stream=sys.stderr)</p>
-<p>sys.path.insert(0,"/var/www/udacity/")</p>
+#!/usr/bin/python
+import sys
+import logging
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0,"/var/www/udacity/")
 
-<p>from udacity import app as application</p>
-<p>application.secret_key = 'my_secret_key'</p>
+from udacity import app as application
+application.secret_key = 'my_secret_key'
 
 
 
@@ -187,19 +187,19 @@ User grader may run the following commands on
 
 <h6>Add the following lines of code to the file to configure the virtual host</h6>
 
-<p><VirtualHost *:80></p>
-<p>	ServerName 13.232.26.143</p>
-<p>	ServerAdmin grader@13.232.26.143</p>
-<p>	WSGIScriptAlias / /var/www/udacity/udacity.wsgi</p>
-<p>	<Directory /var/www/udacity/udacity/></p>
-<p>		Order allow,deny</p>
-<p>		Allow from all</p>
-<p>	</Directory></p>
-
-<p>	ErrorLog ${APACHE_LOG_DIR}/error.log</p>
-<p>	LogLevel warn</p>
-<p>	CustomLog ${APACHE_LOG_DIR}/access.log combined</p>
-<p></VirtualHost></p>
+<VirtualHost *:80>
+	ServerName 13.232.26.143
+	ServerAdmin grader@13.232.26.143
+	WSGIScriptAlias / /var/www/udacity/udacity.wsgi
+	<Directory /var/www/udacity/udacity/>
+		Order allow,deny
+		Allow from all
+	</Directory>
+	
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	LogLevel warn
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
 
 
 <h4>17. Enable the virtual host with the following command</h4>
