@@ -104,16 +104,16 @@ User grader may run the following commands on
 <p>sudo cat /etc/postgresql/9.5/main/pg_hba.conf</p>
 <p>local   all             postgres                                peer
 
-# TYPE  DATABASE        USER            ADDRESS                 METHOD
+ TYPE  DATABASE        USER            ADDRESS                 METHOD
 
-# "local" is for Unix domain socket connections only
+ "local" is for Unix domain socket connections only
 local   all             all                                     peer
-# IPv4 local connections:
+ IPv4 local connections:
 host    all             all             127.0.0.1/32            md5
-# IPv6 local connections:
+ IPv6 local connections:
 host    all             all             ::1/128                 md5
-# Allow replication connections from localhost, by a user with the
-# replication privilege.
+ Allow replication connections from localhost, by a user with the
+ replication privilege.
 #local   replication     postgres                                peer
 #host    replication     postgres        127.0.0.1/32            md5
 #host    replication     postgres        ::1/128                 md5</p>
@@ -144,29 +144,32 @@ host    all             all             ::1/128                 md5
 <h4>13. Install git</h4>
 <p>sudo apt-get install git</p>
 
-<h5>Clone and setup your Item Catalog project from the Github repository you created earlier in this Nanodegree program.
-Make a udacity named directory in /var/www/ and udacity in udacity
-sudo mkdir /var/www/udacity
-Make grader as ownner of that directory
-sudo chown -R grader:grader /var/www/udacity
-Clone the Item Catalog and put them in the /var/www/udacity directory:
-sudo git clone https://github.com/raza750/Catalog_Udacity
-change the name of Catalog_Udacity to udacity
-sudo mv Catalog_Udacity udacity
-Change the name of appone.py to __init__.py:
-sudo mv appone.py __init__.py
+<h5>Clone and setup your Item Catalog project from the Github repository you created earlier in this Nanodegree program.</h5>
 
-Change the database connection in database.py, dummyData.py and __init__.py to:
-engine = create_engine('postgresql://catalog:password@localhost/catalog')
+<h6>Make a udacity named directory in /var/www/ and udacity in udacity</h6>
+<p>sudo mkdir /var/www/udacity</p>
+<h6>Make grader as ownner of that directory</h6>
+<p>sudo chown -R grader:grader /var/www/udacity</p>
+<h5>Clone the Item Catalog and put them in the /var/www/udacity directory:</h5>
+<p>sudo git clone https://github.com/raza750/Catalog_Udacity</p>
+<h6>change the name of Catalog_Udacity to udacity<h6>
+<p>sudo mv Catalog_Udacity udacity</p>
+<h6>Change the name of appone.py to __init__.py:</h6>
+<p>sudo mv appone.py __init__.py</p>
 
-In __init__ change app.run(host='0.0.0.0', port=5000) to app.run() in __main__ method and change the path of the client id:
-CLIENT_ID = json.loads(open('/var/www/udacity/udacity/client_secrets.json', 'r').read())['web']['client_id']
+<h4>14. Change the database connection in database.py, dummyData.py and __init__.py to:</h4>
+<p>engine = create_engine('postgresql://catalog:password@localhost/catalog')</p>
 
-Create the .wsgi file in /var/www/udacity 
-$ cd /var/www/udacity/
-$ sudo vim udacity.wsgi
-Add the following lines of code to the .wsgi file
+<h6>In __init__ change app.run(host='0.0.0.0', port=5000) to app.run() in __main__ method and change the path of the client id:
+CLIENT_ID = json.loads(open('/var/www/udacity/udacity/client_secrets.json', 'r').read())['web']['client_id'] </h6>
 
+
+<h4>15. Create the .wsgi file in /var/www/udacity </h4>
+<p>cd /var/www/udacity/</p>
+<p>sudo vim udacity.wsgi</p>
+
+<h6>Add the following lines of code to the .wsgi file</h6>
+<p>
 #!/usr/bin/python
 import sys
 import logging
@@ -175,12 +178,14 @@ sys.path.insert(0,"/var/www/udacity/")
 
 from udacity import app as application
 application.secret_key = 'my_secret_key'
+</p>
 
 
-Configure and Enable a New Virtual Host:
-sudo vim /etc/apache2/sites-available/udacity.conf
+<h4>16. Configure and Enable a New Virtual Host:</h4>
+<p>sudo vim /etc/apache2/sites-available/udacity.conf</p>
 
-Add the following lines of code to the file to configure the virtual host
+<h6>Add the following lines of code to the file to configure the virtual host</h6>
+<p>
 <VirtualHost *:80>
 	ServerName 13.232.26.143
 	ServerAdmin grader@13.232.26.143
@@ -194,11 +199,12 @@ Add the following lines of code to the file to configure the virtual host
 	LogLevel warn
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
+</p>
 
-Enable the virtual host with the following command:
-sudo a2ensite udacity.conf
-Restart Apache to run the app on sever
-sudo service apache2 restart
+<h4>17. Enable the virtual host with the following command</h4>
+<p>sudo a2ensite udacity.conf</p>
+<h6>Restart Apache to run the app on sever</h6>
+<p>sudo service apache2 restart</p>
 
-for server erros use :
-sudo cat /var/log/apache2/error.log
+<h6>for server erros use </h6>
+<p>sudo cat /var/log/apache2/error.log</p>
