@@ -1,8 +1,9 @@
 # Linux-Server-Configuration
 
-Public IP address: 13.232.26.143
-SSH port: 2200
-URL: http://13.232.26.143/
+Public IP address: 13.232.26.143</br>
+SSH port: 2200</br>
+URL: http://13.232.26.143/ </br>
+
 
 $ ssh -i LightsailDefaultKey-ap-south-1.pem ubuntu@13.232.26.143
 The authenticity of host '13.232.26.143 (13.232.26.143)' can't be established.
