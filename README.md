@@ -102,21 +102,21 @@ User grader may run the following commands on
 
 <h5>PostgreSQL should not allow remote connections. In the /etc/postgresql/9.5/main/pg_hba.conf file, you should see:</h5>
 <p>sudo cat /etc/postgresql/9.5/main/pg_hba.conf</p>
-<p>local   all             postgres                                peer
+<p>local   all             postgres                                peer</p>
 
- TYPE  DATABASE        USER            ADDRESS                 METHOD
+ <p>TYPE  DATABASE        USER            ADDRESS                 METHOD</p></p>
 
- "local" is for Unix domain socket connections only
-local   all             all                                     peer
- IPv4 local connections:
-host    all             all             127.0.0.1/32            md5
- IPv6 local connections:
-host    all             all             ::1/128                 md5
- Allow replication connections from localhost, by a user with the
- replication privilege.
-#local   replication     postgres                                peer
-#host    replication     postgres        127.0.0.1/32            md5
-#host    replication     postgres        ::1/128                 md5</p>
+ <p>"local" is for Unix domain socket connections only</p>
+<p>local   all             all                                     peer</p>
+ <p>IPv4 local connections:</p>
+<p>host    all             all             127.0.0.1/32            md5</p>
+<p> IPv6 local connections:</p>
+<p>host    all             all             ::1/128                 md5</p>
+ <p>Allow replication connections from localhost, by a user with the</p>
+ <p>replication privilege.</p>
+<p>#local   replication     postgres                                peer</p>
+<p>#host    replication     postgres        127.0.0.1/32            md5</p>
+<p>#host    replication     postgres        ::1/128                 md5</p>
 
 
 <h4>11. Create a new database user named catalog that has limited permissions to your catalog application database.</h4>
@@ -160,8 +160,9 @@ host    all             all             ::1/128                 md5
 <h4>14. Change the database connection in database.py, dummyData.py and __init__.py to:</h4>
 <p>engine = create_engine('postgresql://catalog:password@localhost/catalog')</p>
 
-<h6>In __init__ change app.run(host='0.0.0.0', port=5000) to app.run() in __main__ method and change the path of the client id:
-CLIENT_ID = json.loads(open('/var/www/udacity/udacity/client_secrets.json', 'r').read())['web']['client_id'] </h6>
+<h6>In __init__ change app.run(host='0.0.0.0', port=5000) to app.run() in __main__ method</h6> 
+<h6>change the path of the client id:</h6>
+<p>CLIENT_ID = json.loads(open('/var/www/udacity/udacity/client_secrets.json', 'r').read())['web']['client_id'] </p>
 
 
 <h4>15. Create the .wsgi file in /var/www/udacity </h4>
@@ -169,37 +170,37 @@ CLIENT_ID = json.loads(open('/var/www/udacity/udacity/client_secrets.json', 'r')
 <p>sudo vim udacity.wsgi</p>
 
 <h6>Add the following lines of code to the .wsgi file</h6>
-<p>
-#!/usr/bin/python
-import sys
-import logging
-logging.basicConfig(stream=sys.stderr)
-sys.path.insert(0,"/var/www/udacity/")
 
-from udacity import app as application
-application.secret_key = 'my_secret_key'
-</p>
+<p>#!/usr/bin/python</p>
+<p>import sys</p>
+<p>import logging</p>
+<p>logging.basicConfig(stream=sys.stderr)</p>
+<p>sys.path.insert(0,"/var/www/udacity/")</p>
+
+<p>from udacity import app as application</p>
+<p>application.secret_key = 'my_secret_key'</p>
+
 
 
 <h4>16. Configure and Enable a New Virtual Host:</h4>
 <p>sudo vim /etc/apache2/sites-available/udacity.conf</p>
 
 <h6>Add the following lines of code to the file to configure the virtual host</h6>
-<p>
-<VirtualHost *:80>
-	ServerName 13.232.26.143
-	ServerAdmin grader@13.232.26.143
-	WSGIScriptAlias / /var/www/udacity/udacity.wsgi
-	<Directory /var/www/udacity/udacity/>
-		Order allow,deny
-		Allow from all
-	</Directory>
-	
-	ErrorLog ${APACHE_LOG_DIR}/error.log
-	LogLevel warn
-	CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-</p>
+
+<p><VirtualHost *:80></p>
+<p>	ServerName 13.232.26.143</p>
+<p>	ServerAdmin grader@13.232.26.143</p>
+<p>	WSGIScriptAlias / /var/www/udacity/udacity.wsgi</p>
+<p>	<Directory /var/www/udacity/udacity/></p>
+<p>		Order allow,deny</p>
+<p>		Allow from all</p>
+<p>	</Directory></p>
+
+<p>	ErrorLog ${APACHE_LOG_DIR}/error.log</p>
+<p>	LogLevel warn</p>
+<p>	CustomLog ${APACHE_LOG_DIR}/access.log combined</p>
+<p></VirtualHost></p>
+
 
 <h4>17. Enable the virtual host with the following command</h4>
 <p>sudo a2ensite udacity.conf</p>
