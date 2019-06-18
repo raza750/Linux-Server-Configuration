@@ -1,10 +1,20 @@
 # Linux-Server-Configuration
+Project Overview
+A baseline installation of a Linux server and prepare it to host web applications. Learning how to secure your server from a number of attack vectors, install and configure a database server, and deploy one of your existing web applications onto it.
 
 Public IP address: 13.232.26.143</br>
 SSH port: 2200</br>
 URL: http://13.232.26.143/ </br>
 
+Steps to Configure Linux server
+1. Start a new Ubuntu Linux server instance on <a target="_blank" href="https://lightsail.aws.amazon.com">Amazon Lightsail</a>.
+You can refer to the <a href="https://aws.amazon.com/documentation/lightsail/" rel="nofollow">documentation</a> which will help you to get started.
 
+2. Follow the instructions provided to SSH into your server.
+There is a button on lightsail dashboard to directly SSH into your server. You can also SSH into your machine using the private key.
+
+Download the private key provided in account section of AWS Lightsail.
+Use this command: $ ssh -i <privateKeyOfInstance.rsa> <Username>@<Public IP address>
 $ ssh -i LightsailDefaultKey-ap-south-1.pem ubuntu@13.232.26.143
 The authenticity of host '13.232.26.143 (13.232.26.143)' can't be established.
 ECDSA key fingerprint is SHA256:n/8LYxQcacoGEAI+Hajr5mFzVRZyomLE8YkzIA2Jr90.
