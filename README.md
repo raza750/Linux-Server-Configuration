@@ -9,9 +9,9 @@ URL: http://13.232.26.143/ </br>
 <h5>1. Steps to Configure Linux server</h5>
 <p>Start a new Ubuntu Linux server instance on <a target="_blank" href="https://lightsail.aws.amazon.com">Amazon Lightsail</a>.
 You can refer to the <a href="https://aws.amazon.com/documentation/lightsail/" rel="nofollow">documentation</a> which will help you to get started.</p>
-<h6>Follow the instructions provided to SSH into your server.</h6>
+<h5>2. Follow the instructions provided to SSH into your server.</h5>
 <p>There is a button on lightsail dashboard to directly SSH into your server. You can also SSH into your machine using the private key.</p>
-<p>Download the private key provided in account section of AWS Lightsail.</p>
+<h6>Download the private key provided in account section of AWS Lightsail.</h6>
 <p>Use this command: $ ssh -i <privateKeyOfInstance.rsa> <Username>@<Public IP address></p>
 
 
@@ -28,7 +28,8 @@ restart ssh service
 <p>sudo service ssh restart</p>
 
 
-Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
+<h5>5. Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).</h5>
+<div>
 sudo ufw status                  
 sudo ufw default deny incoming   
 sudo ufw default allow outgoing  
@@ -37,16 +38,17 @@ sudo ufw allow www
 sudo ufw allow 123/udp           
 sudo ufw deny 22  
 sudo ufw enable
-Command may disrupt existing ssh connections. Proceed with operation (y|n)? y
-Firewall is active and enabled on system startup
+</div>	
+<p>Command may disrupt existing ssh connections. Proceed with operation (y|n)? y</p>
+<p>Firewall is active and enabled on system startup</p>
 
-Create a new user account named grader.
-sudo adduser grader
-sudo vim /etc/sudoers.d/grader
-Edit and following line to this file
-grader ALL=(ALL) NOPASSWD:ALL
+<h5>6. Create a new user account named grader.</h5>
+<p>sudo adduser grader</p>
+<p>sudo vim /etc/sudoers.d/grader</p>
+<h6>Edit and add following line to this file</h6>
+<p>grader ALL=(ALL) NOPASSWD:ALL</p>
 
-Verify that grader has sudo permissions. 
+<div>Verify that grader has sudo permissions. 
 su - grader 
 enter the password 
 sudo -l 
@@ -59,23 +61,24 @@ Matching Defaults entries for grader on
 User grader may run the following commands on
         ip-172-26-5-148.ap-south-1.compute.internal:
     (ALL) NOPASSWD: ALL
+    </div>
 
 	
-Create an SSH key pair for grader using the ssh-keygen tool
-Generate a keypair and push it to server. Use your local machine to generate a key pair
-$ssh-keygen 
-Push it to server: Create .ssh directory on server machine. And follow the commands to push and authorize the key for SSH login.
-sudo mkdir ~/.ssh
-sudo touch ~/.ssh/authorized_keys
-Copy and paste the key from your local machine, usign vim editor:
-sudo vim ~/.ssh/authorized_keys
-Changing permission of .ssh and .ssh/authorized_keys
-sudo chmod 700 .ssh
-sudo chmod 644 .ssh/authorized_keys
-Check in /etc/ssh/sshd_config file if PasswordAuthentication is set to no
-Restart SSH: sudo service ssh restart
-On the local machine
-ssh -i udacity_key grader@13.232.26.143 -p 2200
+<h5>7. Create an SSH key pair for grader using the ssh-keygen tool.</h5>
+<h6>Generate a keypair and push it to server. Use your local machine to generate a key pair</h6>
+<p>$ssh-keygen </p>
+<h6>Push it to server: Create .ssh directory on server machine. And follow the commands to push and authorize the key for SSH login.</h6>
+<p>sudo mkdir ~/.ssh</p>
+<p>sudo touch ~/.ssh/authorized_keys</p>
+<h6>Copy and paste the key from your local machine, usign vim editor:</h6>
+<p>sudo vim ~/.ssh/authorized_keys</p>
+<h6>Changing permission of .ssh and .ssh/authorized_keys</h6>
+<p>sudo chmod 700 .ssh</p>
+<p>sudo chmod 644 .ssh/authorized_keys</p>
+<h7>Check in /etc/ssh/sshd_config file if PasswordAuthentication is set to no</h7>
+<p>Restart SSH: sudo service ssh restart</p>
+<h6>On the local machine</h6>
+<p>ssh -i udacity_key grader@13.232.26.143 -p 2200</p>
 
 
 Prepare to deploy your project.
